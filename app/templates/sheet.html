@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Helvetica, Arial, sans-serif;
+        }
+
+        .title {
+            font-family: Georgia;
+            text-align: center;
+            font-size: 60px;
+            margin-bottom: 0px;
+            color: slategray;
+        }
+
+        /* Style the form - display items horizontally */
+        .form-inline {
+            flex-flow: row;
+            align-items: center;
+            align-self: center;
+            align-content: center;
+
+            background-color: #79a1c3;
+            margin: 5% auto 15% auto;
+            border: 1px solid silver;
+            height: 2000px;
+            width: 1000px;
+            box-sizing: border-box;
+        }
+
+        
+
+        /* Add some margins for each label */
+        .form-inline label {
+            align-items: center;
+        }
+
+        /* Style the input fields */
+        .attribute-input {
+            vertical-align: middle;
+            margin: 5px 10px 5px 0;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+        }
+
+        /* Style the submit button */
+        .form-inline button {
+            font-family: Helvetica;
+            background-color: slategray;
+            color: white;
+            padding: 14px 20px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            font-size: 20px;
+        }
+
+        .form-inline button:hover {
+            background-color: silver;
+            color: darkslategray
+        }
+
+        .character-info{
+            border: 2px solid black;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .group{
+            display: inline-block;
+            padding: 5px;
+            text-align: left;
+        }
+
+        .attribute-section{
+            border: 2px solid black;
+            background-color: bisque;
+            text-align: center;
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        .attribute-input{
+            border-radius: 30%;
+            border: 1px solid silver;
+            padding: 20px; 
+            width: 55px;
+            height: 38px;
+            text-align: center;
+            resize: none;
+            font-size: 20px;
+        } 
+
+        .name-input{
+            font-size: 30px;
+            color: slategray;
+            border: none;
+            resize: none;
+            font-weight: bold;
+            padding: 15px;
+        }
+
+        .level-input{
+            border-radius: 50%;
+            border: 2px solid black;
+            padding: 15px; 
+            width: 50px;
+            height: 30px;
+            text-align: center;
+            resize: none;
+            font-size: 25px;
+        }
+  
+        .character-heading{
+            border: 2px solid black;
+        }
+
+        .character-name{
+            padding: 10px;
+            padding-bottom: 0;
+            display: inline-block;
+        }
+
+        .health{
+            float: right;
+            padding: 20px;
+        }
+
+        .bonus-input{
+            border-radius: 30%;
+            border: 1px solid silver;
+            padding: 5px;
+            width: 23px;
+            height: 18px;
+            text-align: center;
+            resize: none;
+            font-size: 15px;
+            position: relative;
+            right: 45px;
+            top: 40px;
+        }
+
+        .skills{
+            border: 1px solid black;
+            height: 750px;
+            width: 20%;
+            text-align: left;
+            float: left;
+            background-color: lightgray;
+        }
+
+        .others{
+            border: 1px solid black;
+            background-color: lightgray;
+            width: 20%;
+            text-align: left;
+            float: left;
+        }
+
+        .list-item{
+            border-radius: 20%;
+            width: 30px;
+            height: 20px;
+            resize: none;
+            font-size: 15px;
+            position: relative;
+            top: 5px;
+            left: 5px;
+            text-align: center;
+        }
+
+        .blank{
+            font-family: Arial, Helvetica, sans-serif;
+            padding: 5px;
+            text-align: right;
+        }
+
+        .attribute-title{
+            font-family: Arial, Helvetica, sans-serif;
+            background: slategray;
+            text-align: center;
+            color: white;
+            font-size: 18px;
+            padding: 5px;
+            border-radius: 10%;
+        }
+
+        .subsection-title{
+            font-family: Arial, Helvetica, sans-serif;
+            background: slategray;
+            text-align: center;
+            color: white;
+            font-size: 18px;
+            padding: 5px;
+        }
+
+        .aip{
+            border: 1px solid black;
+            background-color: lightgray;
+            float: right;
+            padding-top: 10px;
+            width: 39.2%;
+            text-align: center;
+        }
+
+        .saving-throws{
+            border: 1px solid black;
+            background-color: lightgray;
+            display: inline-block;
+            width: 20%;
+            text-align: left;
+        }
+
+        .pibf{
+            float: right;
+            border: 1px solid black;
+            background-color: lightgray;
+            width: 39.2%;
+            text-align: center;
+            position: relative;
+            bottom: 140px;
+        }
+
+        .subsection-large-title{
+            width: 390px;
+            font-family: Arial, Helvetica, sans-serif;
+            background: slategray;
+            text-align: center;
+            color: white;
+            font-size: 18px;
+            padding: 5px;
+        }
+        .big-box{
+            height: 100px;
+            width: 380px;
+            resize: none;
+        }
+        .hit-dice{
+            border: 1px solid black;
+            background-color: lightgray;
+            height: 121px;
+            width: 20%;
+            text-align: left;
+            float: left;
+            position: relative;
+            bottom: 123px;
+        }
+        .hit-dice-box{
+            border-radius: 10%;
+            border: 1px solid silver;
+            padding: 20px; 
+            width: 75%;
+            height: 38px;
+            text-align: center;
+            resize: none;
+            font-size: 20px;
+        }
+
+        .attacks{
+            border: 1px solid black;
+            text-align: center;
+            float: right;
+            border: 1px solid black;
+            background-color: lightgray;
+            width: 40.2%;
+            position: relative;
+            bottom: 123px;
+            height: auto;
+        }
+
+        .attack-attributes{
+            background-color: lightgray;
+            float: left;
+            padding-top: 10px;
+            text-align: center;
+            padding-left: 24px;
+        }
+
+        .attack-input{
+            margin-top: 10px;
+            width: 80px;
+            resize: none;
+        }
+
+        .attack-input{
+            
+        }
+
+
+        /* Caleb's CSS */
+        .formbutton {
+            margin: 0px 20px;
+            width: 50%;
+        }
+        
+        .cancelbutton {
+            background-color: darkred;
+        }
+
+        select {
+            width: 100%;
+            padding: 15px 15px;
+            margin: 15px 0;
+            border: 1px solid silver;
+            box-sizing: border-box;
+        }
+
+        .container {
+            padding: 16px;
+        }
+
+        button {
+            font-family: Helvetica;
+            background-color: slategray;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: silver;
+            color: darkslategray
+        }
+
+        .row {
+            display: flex;
+            justify-content: center;
+            align-content: space-around;
+        }
+
+        .form {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,.5); 
+            padding-top: 100px;
+        }
+
+        .form-contents {
+            background-color: white;
+            margin: 5% auto 15% auto;
+            border: 1px solid silver;
+            width: 50%;
+            box-sizing: border-box;
+        }
+
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <h1 class="title">Character Sheet</h1>
+    
+    <form class="form-inline" action="/SaveSheet" method= "post">
+        <button type="submit" class="formbutton">Update</button>
+        
+        <div class="character-heading">
+            <div class="character-name">
+                <label for="name" style="font-size: 20px">Character Name</label> <br />
+                <textarea class="name-input" name="playerName"> {{ character_name }}</textarea>   
+            </div>
+    
+            <div class="health">
+                <div class="group">
+                    <label for="level" style="float: left;">Current Health</label> <br />
+                    <textarea class="level-input" name="current_health">{{ current_health }}</textarea>
+                </div>
+                <div class="group">
+                    <label for="level">Max Health</label> <br />
+                    <textarea class="level-input" name="max_health">{{ max_health }}</textarea>
+                </div>
+            </div>
+        </div>
+        
+    
+        <div class="character-info">
+            <div class="group">
+                <label for="level">Level</label> <br />
+                <textarea class="level-input" name="level">{{ level }}</textarea>
+            </div>
+            <div class="group">
+                <label for="race" class="subsection-title">Race</label> <br />
+                <select name="race">
+                    <option value="{{pRace}}" selected>{{pRace}}</option>
+                    {% for race in all_races %}
+                        <option value="{{race[0]}}">{{race[0]}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="group">
+                <label for="class" class="subsection-title">Class</label> <br />
+                <select name="class">
+                    <option value="{{pClass}}" selected>{{pClass}}</option>
+                    {% for class in all_classes %}
+                        <option value="{{class[0]}}">{{class[0]}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="group">
+                <label for="alignment" class="subsection-title">Alignment</label> <br />
+                <select name="alignment">
+                    <option value="{{alignment}}" selected>{{alignment}}</option>
+                    {% for alignment_ in all_alignments %}
+                        <option value="{{alignment_}}">{{alignment_}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="group">
+                <label for="background" class="subsection-title">Background</label> <br />
+                <textarea class="background-input" name="background">{{ background }}</textarea>
+            </div>
+        </div>
+
+        <div class="attribute-section">
+            <div class="group">
+                <label for="strength" class="attribute-title">Strength</label> <br />
+                <textarea class="attribute-input" name="Strength">{{ Strength }}</textarea>
+                <textarea class="bonus-input" name="Strength">{{ Strength }}</textarea>
+            </div>
+            <div class="group">
+                <label for="dexterity" class="attribute-title">Dexterity</label> <br />
+                <textarea class="attribute-input" name="Dexterity">{{ Dexterity }}</textarea>
+                <textarea class="bonus-input" name="Dexterity">{{ Dexterity }}</textarea>
+            </div>
+            <div class="group">
+                <label for="constitution" class="attribute-title">Constitution</label> <br />
+                <textarea class="attribute-input" name="Constitution">{{ Constitution }}</textarea>   
+                <textarea class="bonus-input" name="Constitution">{{ Constitution }}</textarea>          
+            </div>
+            <div class="group">
+                <label for="intelligence" class="attribute-title">Intelligence</label> <br />
+                <textarea class="attribute-input" name="Intelligence">{{ Intelligence }}</textarea>
+                <textarea class="bonus-input" name="Intelligence">{{ Intelligence }}</textarea>             
+            </div>
+            <div class="group">
+                <label for="wisdom" class="attribute-title">Wisdom</label> <br />
+                <textarea class="attribute-input" name="Wisdom">{{ Wisdom }}</textarea>
+                <textarea class="bonus-input" name="Wisdom">{{ Wisdom }}</textarea>
+            </div>
+            <div class="group">
+                <label for="charisma" class="attribute-title">Charisma</label> <br />
+                <textarea class="attribute-input" name="Charisma">{{ Charisma }}</textarea>
+                <textarea class="bonus-input" name="Charisma">{{ Charisma }}</textarea>
+            </div>
+        </div>
+        
+        <div class="skills">
+            <div class="subsection-title">
+                Skills
+            </div>
+            <div class="blank">
+                <label for="acrobatics">Acrobatics</label>
+                <textarea class="list-item" name="acrobatics">{{ acrobatics }}</textarea>
+            </div>
+            <div class="blank">
+                <label for="animal-handling">Animal Handling</label>
+                <textarea class="list-item" name="animal_handling">{{ animal_handling }}</textarea>
+            </div>
+            <div class="blank">
+                <label for="arcana">Arcana</label>
+                <textarea class="list-item" name="arcana">{{ arcana }}</textarea>
+            </div>
+            <div class="blank">
+                <label for="athletics">Athletics</label>
+                <textarea class="list-item" name="athletics">{{ athletics }}</textarea>
+            </div>
+            <div class="blank">
+                <label for="deception">Deception</label>
+                <textarea class="list-item" name="deception">{{ deception }}</textarea>
+            </div>
+            <div class="blank">
+                <label for="history">History</label>
+                <textarea class="list-item" name="history">{{ history }}</textarea>
+            </div>
+            <div class="blank">
+                <label for="insight">Insight</label>
+                <textarea class="list-item" name="insight">{{ insight }}</textarea>
+            </div>
+            <div class="blank">
+                <label for="intimidation">Intimidation</label>
+                <textarea class="list-item" name="intimidation">{{ intimidation }}</textarea>
+            </div>
+            <div class="blank">
+                <label for="investigation">Investigation</label>
+                <textarea class="list-item" name="investigation">{{ investigation }}</textarea>
+            </div>
+            <div class="blank">
+                <label for="medicine">Medicine</label>
+                <textarea class="list-item" name="medicine">{{ medicine }}</textarea>
+            </div>
+            <div class="blank">
+                <label for="nature">Nature</label>
+                <textarea class="list-item" name="nature">{{ nature }}</textarea>
+            </div>
+            <div class="blank">
+                <label for="perception">Perception</label>
+                <textarea class="list-item" name="perception">{{ perception }}</textarea>
+            </div>
+            <div class="blank">
+                <label for="performance">Performance</label>
+                <textarea class="list-item" name="performance">{{ performance }}</textarea>
+            </div>
+            <div class="blank">
+                <label for="persuassion">Persuassion</label>
+                <textarea class="list-item" name="persuasion">{{ persuasion }}</textarea>
+            </div>
+            <div class="blank">
+                <label for="religion">Religion</label>
+                <textarea class="list-item" name="religion">{{ religion }}</textarea>
+            </div>
+            <div class="blank">
+                <label for="slight-of-hand">Slight of Hand</label>
+                <textarea class="list-item" name="slight_of_hand">{{ slight_of_hand }}</textarea>
+            </div>
+            <div class="blank">
+                <label for="stealth">Stealth</label>
+                <textarea class="list-item" name="stealth">{{ stealth }}</textarea>
+            </div>
+            <div class="blank">
+                <label for="survival">Survival</label>
+                <textarea class="list-item" name="survival">{{ survival }}</textarea>
+            </div>
+        </div>
+
+        <div class="others">
+            <div class="subsection-title">
+                Other Stats
+            </div>
+            <div class="blank">
+                <label for="inspiration">Inspiration</label>
+                {% if inspiration %}
+                <input type="checkbox" class="list-item" name="inspiration" checked/>
+                {% else %}
+                <input type="checkbox" class="list-item" name="inspiration"/>
+                {% endif %}
+            </div>
+            <div class="blank">
+                <label for="passive-perception">Passive Perception</label>
+                <textarea class="list-item" name="passive-perception">{{ passive_perception }}</textarea>
+            </div>
+            <div class="blank">
+                <label for="proficiency-bonus">Proficiency Bonus</label> 
+                <textarea class="list-item" name="proficiency-bonus">{{ proficiency_bonus }}</textarea>
+            </div>
+        </div>
+
+        <div class="saving-throws">
+            <div class="subsection-title">
+                Saving Throws
+            </div>
+            <div class="blank">
+                <label for="saving-strength">Strength</label>
+                <textarea class="list-item" name="saving-strength">{{ saving_strength }}</textarea>
+            </div>
+            <div class="blank">
+                <label for="saving-dexterity">Dexterity</label>
+                <textarea class="list-item" name="saving-dexterity">{{ saving_dexterity }}</textarea>
+            </div>
+            <div class="blank">
+                <label for="saving-constitution">Constitution</label>
+                <textarea class="list-item" name="saving-constitution">{{ saving_constitution }}</textarea>
+            </div>
+            <div class="blank">
+                <label for="saving-wisdom">Wisdom</label>
+                <textarea class="list-item" name="saving-wisdom">{{ saving_wisdom }}</textarea>
+            </div>
+            <div class="blank">
+                <label for="saving-intelligence">Intelligence</label>
+                <textarea class="list-item" name="saving-intelligence">{{ saving_intelligence }}</textarea>
+            </div>
+            <div class="blank">
+                <label for="saving-charisma">Charisma</label>
+                <textarea class="list-item" name="saving-charisma">{{ saving_charisma }}</textarea>
+            </div>
+        </div>
+        <div class="aip">
+            <div class="group">
+                <label for="armor-class" class="attribute-title">Armor Class</label> <br />
+                <textarea class="attribute-input" name="armor-class">{{ armor_class }}</textarea>
+                
+            </div>
+            <div class="group">
+                <label for="initiative" class="attribute-title">Initiative</label> <br />
+                <textarea class="attribute-input" name="initiative">{{ initiative }}</textarea>
+                
+            </div>
+            <div class="group">
+                <label for="speed" class="attribute-title">Speed</label> <br />
+                <textarea class="attribute-input" name="speed">{{ speed }}</textarea>
+                
+            </div>
+        </div>
+        <br>
+        <div class="pibf">
+            <div class="subsection-title">
+                Personality
+            </div>
+            <textarea name="personality" class="big-box">{{ personality }}</textarea>
+            
+            <div class="subsection-title">
+                Ideals
+            </div>
+            <textarea name="ideals" class="big-box">{{ ideals }}</textarea>
+
+            <div class="subsection-title">
+                Bonds
+            </div>
+            <textarea name="bonds" class="big-box">{{ bonds }}</textarea>
+
+            <div class="subsection-title">
+                Flaws
+            </div>
+            <textarea name="flaws" class="big-box">{{ flaws }}</textarea>
+        </div>
+
+        <div class="hit-dice">
+            <div class="subsection-title">
+                Hit Dice
+            </div>
+            <div class="blank">
+                <textarea class="hit-dice-box" spellcheck="false" name="passive-perception">{{ hit_dice }}</textarea>
+            </div>
+        </div>
+
+        <!--
+             <div class="attacks">
+            <div class="subsection-title">
+                Melee Weapons
+            </div>
+            <div class="attack-attributes">
+                <label for="armor-class" class="attribute-title">Name</label> <br>
+            </div>
+            <div class="attack-attributes">
+                <label for="initiative" class="attribute-title">Atk Bonus</label> <br>
+            </div>
+            <div class="attack-attributes">
+                <label for="speed" class="attribute-title">Damage/Type</label> <br>
+            </div>
+
+            <textarea class="attack-input" name="attack-name">{{ Charisma }}</textarea>
+            <textarea class="attack-input" name="attack-bonus">{{ Charisma }}</textarea>
+            <textarea class="attack-input" name="attack-type">{{ Charisma }}</textarea>
+        -->
+        <div class="attacks">
+            <div class="subsection-title" style="font-weight: bold;">
+                Inventory
+            </div>
+                <div class="item-section">
+                    <div class="row">
+                        <button type="button" onclick="document.getElementById('additem').style.display='block'" class="invButton">Add Item</button>
+                        <button type="button" onclick="document.getElementById('delitem').style.display='block'" class="invButton">Remove Item</button>
+                    </div>
+                    <table class="">
+                        
+                        <colgroup><col span="1"/><col class="viewcolumn"/></colgroup>
+                        <tr>
+                            <th>Name</th>
+                            <th>Attack Bonus</th>
+                            <th>Damage/Type</th>
+                        </tr>
+                        <tr>
+                            <td>blah</td>
+                            <td>7</td>
+                            <td>bleed</td>
+                        </tr>
+                        
+                    </table>
+                </div>
+            
+        </div>
+        
+    </form> 
+
+    <div id="additem" class="form">
+        <form class="form-contents" action="/AddItem" method="post">
+            <div class="container">
+                <label for="id"><b>Item Name</b></label>
+                <select name="id" required>
+                {% for item in items %}
+                    <option value="{{item[0]}}">{{item[1]}}</option>
+                {% endfor %}
+                </select>
+                <div class="row">
+                    <button type="submit" class="formbutton">Add</button>
+                    <button type="button" onclick="document.getElementById('additem').style.display='none'" class="cancelbutton formbutton">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div id="delitem" class="form">
+        <form class="form-contents" action="/AddItem" method="post">
+            <div class="container">
+                <label for="id"><b>Item Name</b></label>
+                <select name="id" required>
+                {% for item in items %}
+                    <option value="{{item[0]}}">{{item[1]}}</option>
+                {% endfor %}
+                </select>
+                <div class="row">
+                    <button type="submit" class="formbutton">Remove</button>
+                    <button type="button" onclick="document.getElementById('delitem').style.display='none'" class="cancelbutton formbutton">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
